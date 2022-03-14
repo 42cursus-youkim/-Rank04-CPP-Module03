@@ -7,7 +7,6 @@
 class ClapTrap {
  public:
   // Constructors
-  ClapTrap();
   ClapTrap(const ClapTrap& copy);
   ClapTrap(const std::string& name);
 
@@ -23,6 +22,7 @@ class ClapTrap {
   void beRepaired(unsigned int amount);
 
  private:
+  ClapTrap();
   std::string _name;
   unsigned int _hitPoints;
   unsigned int _energyPoints;

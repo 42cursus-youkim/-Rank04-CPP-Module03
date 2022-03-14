@@ -3,11 +3,10 @@
 
 using std::cout;
 // Constructors
-ClapTrap::ClapTrap()
-    : _name("Claptrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {}
-
 ClapTrap::ClapTrap(const std::string& name)
-    : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {}
+    : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  cout << "ClapTrap " << _name << " is born!" << std::endl;
+}
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
     : _name(copy._name),
@@ -16,7 +15,9 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
       _attackDamage(copy._attackDamage) {}
 
 // Destructor
-ClapTrap::~ClapTrap() {}
+ClapTrap::~ClapTrap() {
+  cout << "ClapTrap " << _name << " is dead!" << std::endl;
+}
 
 // Operators
 ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
