@@ -6,6 +6,9 @@ using std::cout;
 int main(void) {
   ClapTrap trap("trap");
   ClapTrap copiedTrap(trap);
+  ClapTrap assignedTrap("before");
+
+  assignedTrap = trap;
 
   trap.takeDamage(10);
   trap.beRepaired(10);

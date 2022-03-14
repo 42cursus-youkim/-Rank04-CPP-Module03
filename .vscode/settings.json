@@ -71,6 +71,7 @@
     "cinttypes": "cpp",
     "typeinfo": "cpp",
     "semaphore": "cpp",
-    "__nullptr": "cpp"
+    "__nullptr": "cpp",
+    "sstream": "cpp"
   }
 }
