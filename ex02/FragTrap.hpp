@@ -19,7 +19,10 @@ class FragTrap : public ClapTrap {
 
   // Function
   void attack(std::string const& target);
-  void guardGate();
+  void highFivesGuys();
+
+  // Util
+  std::ostream& announce(std::string color);
 
  private:
   // Disabled Constructor

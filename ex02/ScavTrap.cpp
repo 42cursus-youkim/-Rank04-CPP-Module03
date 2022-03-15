@@ -1,4 +1,8 @@
 #include "ScavTrap.hpp"
+#include <iomanip>
+#include <iostream>
+
+using std::cout;
 
 // Constructors
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
@@ -45,4 +49,10 @@ void ScavTrap::attack(std::string const& target) {
 
 void ScavTrap::guardGate() {
   announce(yellow) << "entered GATE KEEPER MODE!!!\n";
+}
+
+std::ostream& ScavTrap::announce(std::string color) {
+  cout << color << "ScavTrap " << std::left << std::setw(16) << makeTag(_name)
+       << " " << color;
+  return cout;
 }
