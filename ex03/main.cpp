@@ -3,11 +3,39 @@
 
 using std::cout;
 
-int main(void) {
-  DiamondTrap dia("dia");
+static void testDefault() {
+  DiamondTrap dia("default");
+}
 
+static void testCopy() {
+  DiamondTrap dia("base");
+  DiamondTrap copiedDia = dia;
+}
+
+static void testAssign() {
+  DiamondTrap dia("base");
+  DiamondTrap assignedDia;
+
+  assignedDia = dia;
+}
+
+static void testWork() {
+  DiamondTrap dia("dia");
+  dia.whoAmI();
   dia.attack("cheese");
   dia.takeDamage(10);
   dia.beRepaired(10);
+  dia.guardGate();
   dia.highFivesGuys();
+}
+
+int main() {
+  typedef void (*testFunc)(void);
+  std::string names[] = {"testDefault", "testCopy", "testAssign", "testWork"};
+  testFunc tests[] = {testDefault, testCopy, testAssign, testWork};
+  for (int i = 0; i < 4; i++) {
+    cout << "==== Running " << names[i] << " ====\n";
+    tests[i]();
+    cout << "==========================\n\n";
+  }
 }

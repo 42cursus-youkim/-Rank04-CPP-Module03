@@ -23,7 +23,8 @@ DiamondTrap::DiamondTrap(const std::string& name)
   announce(green) << "is shiny!!!!\n" << end;
 }
 
-// DiamondTrap::DiamondTrap(const DiamondTrap& copy) {}
+DiamondTrap::DiamondTrap(const DiamondTrap& copy)
+    : ClapTrap(copy), ScavTrap(copy), FragTrap(copy) {}
 
 // Destructor
 DiamondTrap::~DiamondTrap() {
@@ -31,15 +32,23 @@ DiamondTrap::~DiamondTrap() {
 }
 
 // Operators
-// DiamondTrap& DiamondTrap::operator=(const DiamondTrap& assign) {}
+DiamondTrap& DiamondTrap::operator=(const DiamondTrap& assign) {
+  _name = assign._name;
+  ClapTrap::_name = assign.ClapTrap::_name;
+  FragTrap::_hitPoints = assign._hitPoints;
+  ScavTrap::_energyPoints = assign._energyPoints;
+  FragTrap::_attackDamage = assign._attackDamage;
+  announce(green) << "is assigned and shiny!!!!\n" << end;
+  return *this;
+}
 
 void DiamondTrap::attack(std::string const& target) {
   ScavTrap::attack(target);
 }
 
 void DiamondTrap::whoAmI() {
-  announce(red) << "My name: " << makeTag(_name)
-                << "and claptrap name: " << makeTag(ClapTrap::_name) << " !\n"
+  announce(red) << "My private name: " << makeTag(_name) << yellow
+                << " and claptrap name: " << makeTag(ClapTrap::_name) << " !\n"
                 << end;
 }
 
