@@ -8,6 +8,7 @@
 class ScavTrap : public ClapTrap {
  public:
   // Constructors
+  ScavTrap();
   ScavTrap(const std::string& name);
   ScavTrap(const ScavTrap& copy);
 
@@ -23,10 +24,6 @@ class ScavTrap : public ClapTrap {
 
   // Util
   std::ostream& announce(std::string color);
-
- private:
-  // Disabled Constructor
-  ScavTrap();
 };
 
 #endif
