@@ -19,14 +19,7 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
   announce(green) << "long for COMBAT!!!!!\n" << end;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy._name) {
-  _hitPoints = copy._hitPoints;
-  _energyPoints = copy._energyPoints;
-  _attackDamage = copy._attackDamage;
-  announce(green) << "from " << makeTag(copy._name) << green
-                  << " long for COMBAT!!!!!\n"
-                  << end;
-}
+ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy) {}
 
 // Destructor
 ScavTrap::~ScavTrap() {

@@ -29,6 +29,10 @@ static void testWork() {
   dia.highFivesGuys();
 }
 
+// static void testVirtual() {
+
+// }
+
 int main() {
   typedef void (*testFunc)(void);
   std::string names[] = {"testDefault", "testCopy", "testAssign", "testWork"};

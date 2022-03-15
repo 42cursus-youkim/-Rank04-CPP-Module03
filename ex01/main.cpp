@@ -13,13 +13,21 @@ int main(void) {
     trap.attack("some unlucky barrel");
   }
   {
-    std::cout << "===SCAV===\n";
+    std::cout << "===SCAV EMPTY===\n";
     ScavTrap scav("scav");
-    ScavTrap cloneScav = scav;
+  }
+  {
+    std::cout << "===SCAV ACT===\n";
+    ScavTrap scav("scav");
 
     scav.attack("some unlucky BARREL");
     scav.takeDamage(10);
     scav.beRepaired(10);
     scav.guardGate();
+  }
+  {
+    std::cout << "===SCAV CLONE===\n";
+    ScavTrap scav("scav");
+    ScavTrap scavClone = scav;
   }
 }
