@@ -6,6 +6,11 @@
 using std::cout;
 
 // Constructors
+ClapTrap::ClapTrap()
+    : _name("(VOID)"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  announce(green) << "is born!\n" << end;
+}
+
 ClapTrap::ClapTrap(const std::string& name)
     : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
   announce(green) << "is born!\n" << end;

@@ -6,6 +6,7 @@
 class ClapTrap {
  public:
   // Constructors
+  ClapTrap();
   ClapTrap(const ClapTrap& copy);
   ClapTrap(const std::string& name);
 
@@ -30,10 +31,6 @@ class ClapTrap {
   std::string boldNum(int num);
   std::string makeTag(const std::string& str);
   std::ostream& announce(std::string color);
-
- private:
-  // Disabled Constructor
-  ClapTrap();
 };
 
 // Colors
