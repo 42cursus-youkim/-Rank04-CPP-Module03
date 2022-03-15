@@ -15,9 +15,11 @@ int main(void) {
   {
     std::cout << "===SCAV===\n";
     ScavTrap scav("scav");
+    ScavTrap cloneScav = scav;
 
     scav.attack("some unlucky BARREL");
     scav.takeDamage(10);
     scav.beRepaired(10);
+    scav.guardGate();
   }
 }

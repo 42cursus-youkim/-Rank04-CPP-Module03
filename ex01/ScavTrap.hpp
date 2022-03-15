@@ -19,6 +19,7 @@ class ScavTrap : public ClapTrap {
 
   // Function
   void attack(std::string const& target);
+  void guardGate();
 
  private:
   // Disabled Constructor

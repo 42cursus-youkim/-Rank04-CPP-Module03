@@ -9,9 +9,14 @@ ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
 }
 
 // TODO: copy constructor
-// ScavTrap::ScavTrap(const ScavTrap& copy) {
-//   (void)copy;
-// }
+ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy._name) {
+  _hitPoints = copy._hitPoints;
+  _energyPoints = copy._energyPoints;
+  _attackDamage = copy._attackDamage;
+  announce(green) << "from " << makeTag(copy._name) << green
+                  << " long for COMBAT!!!!!\n"
+                  << end;
+}
 
 // Destructor
 ScavTrap::~ScavTrap() {
@@ -37,4 +42,8 @@ void ScavTrap::attack(std::string const& target) {
                    << red << boldNum(_attackDamage) << yellow
                    << " points of DAMAGE! (and that was a lot)\n"
                    << end;
+}
+
+void ScavTrap::guardGate() {
+  announce(yellow) << "entered GATE KEEPER MODE!!!\n";
 }
