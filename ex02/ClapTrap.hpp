@@ -20,18 +20,20 @@ class ClapTrap {
   void takeDamage(unsigned int amount);
   void beRepaired(unsigned int amount);
 
- private:
+ protected:
   std::string _name;
   unsigned int _hitPoints;
   unsigned int _energyPoints;
   unsigned int _attackDamage;
 
+  // Util
+  std::string boldNum(int num);
+  std::string makeTag(const std::string& str);
+  std::ostream& announce(std::string color);
+
+ private:
   // Disabled Constructor
   ClapTrap();
-
-  // Util
-  std::string makeTag(const std::string& str);
-  std::ostream& announce(const std::string& color);
 };
 
 // Colors

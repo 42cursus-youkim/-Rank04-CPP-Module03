@@ -4,7 +4,6 @@
 #include <sstream>
 
 using std::cout;
-static std::string boldNum(int num);
 
 // Constructors
 ClapTrap::ClapTrap(const std::string& name)
@@ -61,7 +60,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 }
 
 // Util
-static std::string boldNum(int num) {
+std::string ClapTrap::boldNum(int num) {
   std::stringstream ss;
 
   ss << bold << num << end;
@@ -75,7 +74,7 @@ std::string ClapTrap::makeTag(const std::string& str) {
   return ss.str();
 }
 
-std::ostream& ClapTrap::announce(const std::string& color) {
+std::ostream& ClapTrap::announce(std::string color) {
   cout << color << "ClapTrap " << std::left << std::setw(16) << makeTag(_name)
        << " " << color;
   return cout;

@@ -1,14 +1,14 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 // Constructors
-ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
+FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
   _hitPoints = 100;
   _energyPoints = 50;
   _attackDamage = 20;
   announce(green) << "long for COMBAT!!!!!\n" << end;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy._name) {
+FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy._name) {
   _hitPoints = copy._hitPoints;
   _energyPoints = copy._energyPoints;
   _attackDamage = copy._attackDamage;
@@ -18,12 +18,12 @@ ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy._name) {
 }
 
 // Destructor
-ScavTrap::~ScavTrap() {
+FragTrap::~FragTrap() {
   announce(red) << "is BLASTED into oblivion!!!!!\n" << end;
 }
 
 // Operators
-ScavTrap& ScavTrap::operator=(const ScavTrap& assign) {
+FragTrap& FragTrap::operator=(const FragTrap& assign) {
   if (this != &assign) {
     announce(yellow) << "is assigned to " << makeTag(assign._name) << yellow
                      << "!!!!!\n"
@@ -36,13 +36,13 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& assign) {
   return *this;
 }
 
-void ScavTrap::attack(std::string const& target) {
+void FragTrap::attack(std::string const& target) {
   announce(yellow) << "attack " << makeTag(target) << yellow << ", causing "
                    << red << boldNum(_attackDamage) << yellow
                    << " points of DAMAGE! (and that was a lot)\n"
                    << end;
 }
 
-void ScavTrap::guardGate() {
+void FragTrap::guardGate() {
   announce(yellow) << "entered GATE KEEPER MODE!!!\n";
 }
