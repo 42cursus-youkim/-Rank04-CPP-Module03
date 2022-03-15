@@ -29,6 +29,7 @@ ScavTrap::~ScavTrap() {
 // Operators
 ScavTrap& ScavTrap::operator=(const ScavTrap& assign) {
   ClapTrap::operator=(assign);
+  return *this;
 }
 
 void ScavTrap::attack(std::string const& target) {
