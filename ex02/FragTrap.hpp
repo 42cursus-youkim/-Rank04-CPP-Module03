@@ -8,6 +8,7 @@
 class FragTrap : public ClapTrap {
  public:
   // Constructors
+  FragTrap();
   FragTrap(const std::string& name);
   FragTrap(const FragTrap& copy);
 
@@ -23,10 +24,6 @@ class FragTrap : public ClapTrap {
 
   // Util
   std::ostream& announce(std::string color);
-
- private:
-  // Disabled Constructor
-  FragTrap();
 };
 
 #endif

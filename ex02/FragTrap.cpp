@@ -5,6 +5,12 @@
 using std::cout;
 
 // Constructors
+FragTrap::FragTrap() : ClapTrap("(VOID)") {
+  _hitPoints = 100;
+  _energyPoints = 100;
+  _attackDamage = 30;
+  announce(green) << "is here!!!!\n" << end;
+}
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
   _hitPoints = 100;
   _energyPoints = 100;
@@ -16,8 +22,7 @@ FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy._name) {
   _hitPoints = copy._hitPoints;
   _energyPoints = copy._energyPoints;
   _attackDamage = copy._attackDamage;
-  announce(green) << "from " << makeTag(copy._name) << green
-                  << " is here!!!!\n"
+  announce(green) << "from " << makeTag(copy._name) << green << " is here!!!!\n"
                   << end;
 }
 
