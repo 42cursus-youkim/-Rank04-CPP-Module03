@@ -6,6 +6,7 @@
 class ClapTrap {
  public:
   // Constructors
+  ClapTrap();
   ClapTrap(const ClapTrap& copy);
   ClapTrap(const std::string& name);
 
@@ -25,9 +26,6 @@ class ClapTrap {
   unsigned int _hitPoints;
   unsigned int _energyPoints;
   unsigned int _attackDamage;
-
-  // Disabled Constructor
-  ClapTrap();
 
   // Util
   std::string makeTag(const std::string& str);

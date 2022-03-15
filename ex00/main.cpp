@@ -5,6 +5,7 @@ using std::cout;
 
 int main(void) {
   ClapTrap trap("trap");
+  ClapTrap voidTrap;
 
   trap.takeDamage(10);
   trap.beRepaired(10);
