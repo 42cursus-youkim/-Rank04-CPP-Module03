@@ -33,12 +33,8 @@ DiamondTrap::~DiamondTrap() {
 
 // Operators
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& assign) {
-  _name = assign._name;
-  ClapTrap::_name = assign.ClapTrap::_name;
-  FragTrap::_hitPoints = assign._hitPoints;
-  ScavTrap::_energyPoints = assign._energyPoints;
-  FragTrap::_attackDamage = assign._attackDamage;
-  announce(green) << "is assigned and shiny!!!!\n" << end;
+  ClapTrap::operator=(assign);
+  DiamondTrap::_name = assign.DiamondTrap::_name;
   return *this;
 }
 

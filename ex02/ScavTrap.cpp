@@ -28,16 +28,7 @@ ScavTrap::~ScavTrap() {
 
 // Operators
 ScavTrap& ScavTrap::operator=(const ScavTrap& assign) {
-  if (this != &assign) {
-    announce(yellow) << "is assigned to " << makeTag(assign._name) << yellow
-                     << "!!!!!\n"
-                     << end;
-    _name = assign._name;
-    _hitPoints = assign._hitPoints;
-    _energyPoints = assign._energyPoints;
-    _attackDamage = assign._attackDamage;
-  }
-  return *this;
+  ClapTrap::operator=(assign);
 }
 
 void ScavTrap::attack(std::string const& target) {
