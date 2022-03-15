@@ -18,14 +18,7 @@ FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
   announce(green) << "is here!!!!\n" << end;
 }
 
-FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy._name) {
-  _hitPoints = copy._hitPoints;
-  _energyPoints = copy._energyPoints;
-  _attackDamage = copy._attackDamage;
-  announce(green) << "from " << makeTag(copy._name) << green
-                  << " is here!!!!\n"
-                  << end;
-}
+FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy) {}
 
 // Destructor
 FragTrap::~FragTrap() {
