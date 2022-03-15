@@ -6,9 +6,10 @@
 #include "FragTrap.hpp"
 #include "ScavTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap {
+class DiamondTrap : public ScavTrap, public FragTrap {
  public:
   // Constructors
+  DiamondTrap();
   DiamondTrap(const std::string& name);
   DiamondTrap(const DiamondTrap& copy);
 
@@ -26,8 +27,7 @@ class DiamondTrap : public FragTrap, public ScavTrap {
   std::ostream& announce(std::string color);
 
  private:
-  // Disabled Constructor
-  DiamondTrap();
+  std::string _name;
 };
 
 #endif
