@@ -11,7 +11,7 @@ class ClapTrap {
   ClapTrap(const std::string& name);
 
   // Destructor
-  ~ClapTrap();
+  virtual ~ClapTrap();
 
   // Operators
   ClapTrap& operator=(const ClapTrap& assign);
