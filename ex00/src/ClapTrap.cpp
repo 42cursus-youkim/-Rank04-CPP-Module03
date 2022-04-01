@@ -46,14 +46,18 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
 }
 
 void ClapTrap::attack(std::string const& target) {
-  if (_energyPoints > 0) {
+  if (_energyPoints == 0) {
+    announce(red) << "is out of energy!\n" << end;
+    return;
+  } else if (_hitPoints == 0) {
+    announce(red) << "is out of hit points!\n" << end;
+    return;
+  } else {
     _energyPoints--;
     announce(yellow) << "attack " << makeTag(target) << yellow << ", causing "
                      << red << boldNum(_attackDamage) << yellow
                      << " points of damage!\n"
                      << end;
-  } else {
-    announce(red) << "is out of energy to attack!\n" << end;
   }
 }
 
