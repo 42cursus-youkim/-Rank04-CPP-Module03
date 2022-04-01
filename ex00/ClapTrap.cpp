@@ -46,10 +46,15 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
 }
 
 void ClapTrap::attack(std::string const& target) {
-  announce(yellow) << "attack " << makeTag(target) << yellow << ", causing "
-                   << red << boldNum(_attackDamage) << yellow
-                   << " points of damage!\n"
-                   << end;
+  if (_energyPoints > 0) {
+    _energyPoints--;
+    announce(yellow) << "attack " << makeTag(target) << yellow << ", causing "
+                     << red << boldNum(_attackDamage) << yellow
+                     << " points of damage!\n"
+                     << end;
+  } else {
+    announce(red) << "is out of energy to attack!\n" << end;
+  }
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
@@ -59,10 +64,15 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  _hitPoints += amount;
-  announce(green) << "is repaired by " << boldNum(amount) << green
-                  << " points!\n"
-                  << end;
+  if (_energyPoints > 0) {
+    _energyPoints--;
+    _hitPoints += amount;
+    announce(green) << "is repaired by " << boldNum(amount) << green
+                    << " points!\n"
+                    << end;
+  } else {
+    announce(red) << "is out of energy to repair!\n" << end;
+  }
 }
 
 // Util
