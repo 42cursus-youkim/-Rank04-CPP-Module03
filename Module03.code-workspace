@@ -1,0 +1,53 @@
+{
+  "folders": [
+    {
+      "name": "ex00",
+      "path": "ex00"
+    },
+    {
+      "name": "ex01",
+      "path": "ex01"
+    },
+    {
+      "name": "ex02",
+      "path": "ex02"
+    },
+    {
+      "name": "ex03",
+      "path": "ex03"
+    }
+  ],
+  "settings": {
+    "files.associations": {
+      "**/*.pug": "jade",
+      "**/*.h": "c",
+      "**/*.c": "c",
+      "**/*.cpp": "cpp",
+      "**/*.html": "html",
+      "**/templates/**/*.html": "django-html",
+      "**/templates/**/*.css": "css",
+      "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+      "*.html": "html",
+      "*.xpm": "c",
+      "*.h": "c",
+      "*.hpp": "cpp",
+      "*.njk": "nunjucks",
+      "**/templates/**/*": "django-txt",
+      "*.pug": "jade",
+      "*.list": "properties",
+      "*.sav": "json",
+      "*.lalrpop": "rust",
+      "__bit_reference": "cpp",
+      "__hash_table": "cpp",
+      "__split_buffer": "cpp",
+      "array": "cpp",
+      "initializer_list": "cpp",
+      "ios": "cpp",
+      "iterator": "cpp",
+      "string": "cpp",
+      "string_view": "cpp",
+      "unordered_map": "cpp",
+      "vector": "cpp"
+    }
+  }
+}
