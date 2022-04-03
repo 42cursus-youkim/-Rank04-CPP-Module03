@@ -9,6 +9,13 @@
 ## tasks
 
 ### ex00: Aaaaand... OPEN!
+> First, you have to implement a class! How original!
 ### ex01: Serena, my love
+> Because you can never have enough ClapTraps, you will now create a derived robot.
+
 ### ex02: Repetitive work
+> Making ClapTraps is probably starting to get on your nerves.
+> Now, implement a FragTrap class that inherits from ClapTrap.
 ### ex03: Now it’s weird!
+> In this exercise, you will create a monster: a ClapTrap that’s half FragTrap, half
+> ScavTrap. It will be named DiamondTrap...
