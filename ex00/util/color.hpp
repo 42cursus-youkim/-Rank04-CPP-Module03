@@ -71,8 +71,13 @@
 #define BHCYN "\e[1;96m"
 #define BHWHT "\e[1;97m"
 
-//	===== Reset =====
+//	===== Other =====
 #define END "\e[0m"
+#define BOLD "\e[1m"
+#define UNDER "\e[4m"
+#define BLINK "\e[5m"
+#define REVERSE "\e[7m"
+#define HIDDEN "\e[8m"
 
 /*	===== Reference =====
         https://gist.github.com/RabaDabaDoba/145049536f815903c79944599c6f952a
