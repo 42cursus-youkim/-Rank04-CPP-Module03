@@ -9,7 +9,7 @@ int main(void) {
     ClapTrap trap("trap");
 
     trap.takeDamage(10);
-    trap.attack("some unlucky barrel");
+    trap.attack("barrel");
   }
   {
     ClapTrap trap("repairTrap");
@@ -20,7 +20,7 @@ int main(void) {
   {
     ClapTrap trap("attackTrap");
     for (int i = 0; i < 16; i++) {
-      trap.attack("some unlucky barrel");
+      trap.attack("barrel");
     }
   }
 }

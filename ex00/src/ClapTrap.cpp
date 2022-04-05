@@ -5,17 +5,28 @@
 #include "color.hpp"
 
 using std::cout;
-static std::string boldNum(int num);
+
+namespace msg {
+
+const string clapTrapMsg[4] = {"ClapTrap", "is born!", "is dead!", "attacks"};
+
+}  // namespace msg
 
 // Constructors
 ClapTrap::ClapTrap()
-    : _name("(VOID)"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-  announce() << "is born!\n" END;
+    : _name("(VOID)"),
+      _hitPoints(HITPOINTS),
+      _energyPoints(ENERGY_POINTS),
+      _attackDamage(ATTACK_DAMAGE) {
+  logln(msg::CONSTRUCTOR);
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-    : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
-  announce() << "is born!\n" END;
+    : _name(name),
+      _hitPoints(HITPOINTS),
+      _energyPoints(ENERGY_POINTS),
+      _attackDamage(ATTACK_DAMAGE) {
+  logln(msg::CONSTRUCTOR);
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
@@ -23,76 +34,89 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
       _hitPoints(copy._hitPoints),
       _energyPoints(copy._energyPoints),
       _attackDamage(copy._attackDamage) {
-  announce() << "is copied!\n" END;
+  logln(msg::CONSTRUCTOR);
 }
 
 // Destructor
-ClapTrap::~ClapTrap() {
-  announce(RED) << "is dead!\n" END;
-}
+ClapTrap::~ClapTrap() { logln(msg::DESTRUCTOR); }
 
 // Operators
 ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
   if (this != &assign) {
-    announce(YEL) << "is assigned to " << makeTag(assign._name) << YEL
-                  << "!\n" END;
-    _name = assign._name;
-    _hitPoints = assign._hitPoints;
-    _energyPoints = assign._energyPoints;
-    _attackDamage = assign._attackDamage;
+    setName(assign.getName());
+    setHitPoints(assign.getHitPoints());
+    setEnergyPoints(assign.getEnergyPoints());
+    setAttackDamage(assign.getAttackDamage());
   }
 
   return *this;
 }
 
-void ClapTrap::attack(std::string const& target) {
-  if (_energyPoints == 0) {
-    announce(RED) << "is out of energy!\n" END;
-    return;
-  } else if (_hitPoints == 0) {
-    announce(RED) << "is out of hit points!\n" END;
-    return;
-  } else {
-    _energyPoints--;
-    announce(YEL) << "attack " << makeTag(target) << YEL ", causing " RED
-                  << boldNum(_attackDamage) << YEL
-                  << " points of damage!\n" END;
-  }
-}
-
-void ClapTrap::takeDamage(unsigned int amount) {
-  _hitPoints = _hitPoints > amount ? _hitPoints - amount : 0;
-  announce(RED) << "take " << boldNum(amount) << RED " points of damage!\n" END;
-}
-
-void ClapTrap::beRepaired(unsigned int amount) {
-  if (_energyPoints > 0) {
-    _energyPoints--;
-    _hitPoints += amount;
-    announce() << "is repaired by " << boldNum(amount) << GRN
-               << " points!\n" END;
-  } else {
-    announce(RED) << "is out of energy to repair!\n" END;
-  }
-}
-
 // Util
-static std::string boldNum(int num) {
+string ClapTrap::boldNum(int num) {
   std::stringstream ss;
 
   ss << BOLD << num << END;
   return ss.str();
 }
 
-std::string ClapTrap::makeTag(const std::string& str) {
-  std::stringstream ss;
-
-  ss << BOLD "<" << str << ">" END;
-  return ss.str();
+const string& ClapTrap::getLog(msg::type type) const {
+  return msg::clapTrapMsg[type];
 }
 
-std::ostream& ClapTrap::announce(const std::string& color) {
-  cout << color << "ClapTrap " << std::left << std::setw(16) << makeTag(_name)
-       << " " << color;
+std::ostream& ClapTrap::log(msg::type type) const {
+  cout << msg::colorsOnType[type] << getLog(msg::CLASSNAME) << " " << getName()
+       << " ";
+  if (type > msg::SPECIAL)
+    cout << msg::generalMsg[type - msg::SPECIAL - 1] << " ";
+  else
+    cout << getLog(type) << " ";
   return cout;
+}
+
+void ClapTrap::logln(msg::type type) const { log(type) << "\n"; }
+
+// Methods
+void ClapTrap::attack(std::string const& target) {
+  if (_energyPoints == 0)
+    return logln(msg::ENERGY);
+  else if (_hitPoints == 0)
+    return logln(msg::HITPOINT);
+  else {
+    _energyPoints--;
+    log(msg::ATTACK) << target << "for " << boldNum(_attackDamage)
+                     << YEL " points!\n" END;
+  }
+}
+
+void ClapTrap::takeDamage(unsigned int amount) {
+  _hitPoints = _hitPoints > amount ? _hitPoints - amount : 0;
+  cout << RED << getLog(msg::CLASSNAME) << " take " << boldNum(amount)
+       << RED " points of damage!\n" END;
+}
+
+void ClapTrap::beRepaired(unsigned int amount) {
+  if (_energyPoints > 0) {
+    _energyPoints--;
+    _hitPoints += amount;
+    // announce() << "is repaired by " << boldNum(amount) << GRN
+    //            << " points!\n" END;
+  } else {
+    // announce(RED) << "is out of energy to repair!\n" END;
+  }
+}
+
+// Getters/Setters
+const string& ClapTrap::getName() const { return _name; }
+uint ClapTrap::getHitPoints() const { return _hitPoints; }
+uint ClapTrap::getEnergyPoints() const { return _energyPoints; }
+uint ClapTrap::getAttackDamage() const { return _attackDamage; }
+
+void ClapTrap::setName(const string& name) { _name = name; }
+void ClapTrap::setHitPoints(uint hitPoints) { _hitPoints = hitPoints; }
+void ClapTrap::setEnergyPoints(uint energyPoints) {
+  _energyPoints = energyPoints;
+}
+void ClapTrap::setAttackDamage(uint attackDamage) {
+  _attackDamage = attackDamage;
 }
