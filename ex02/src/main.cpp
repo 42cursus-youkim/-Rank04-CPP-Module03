@@ -9,6 +9,9 @@ void test_orthodox() {
   {
     test::subject("unnamed");
     FragTrap empty;
+    TEST_EXPECT(empty.getHitPoints() == 100 and
+                empty.getEnergyPoints() == 100 and
+                empty.getAttackDamage() == 30);
   }
   {
     test::subject("named");

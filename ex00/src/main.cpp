@@ -9,6 +9,8 @@ void test_orthodox() {
   {
     test::subject("unnamed");
     ClapTrap empty;
+    TEST_EXPECT(empty.getEnergyPoints() == 10 and empty.getHitPoints() == 10 and
+                empty.getAttackDamage() == 0);
   }
   {
     test::subject("named");

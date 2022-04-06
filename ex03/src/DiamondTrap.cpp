@@ -41,7 +41,7 @@ void DiamondTrap::attack(std::string const& target) {
 }
 
 void DiamondTrap::whoAmI() {
-  announce(RED) << "My private name: " BOLD << _name << YEL
+  announce(CYN) << "My private name: " BOLD << _name << YEL
                 << " and claptrap name: " << ClapTrap::_name << " !\n" END;
 }
 

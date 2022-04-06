@@ -9,6 +9,9 @@ void test_orthodox() {
   {
     test::subject("unnamed");
     ScavTrap empty;
+    TEST_EXPECT(empty.getHitPoints() == 100 and
+                empty.getEnergyPoints() == 50 and
+                empty.getAttackDamage() == 20);
   }
   {
     test::subject("named");
@@ -30,6 +33,7 @@ void test_orthodox() {
 void test_member_virtual() {
   test::header("virtual attack, takeDamage, beRepaired");
   ClapTrap* botPtr = new ScavTrap("scav");
+  test::subject("attribute");
   test::subject("virtual attack");
   botPtr->attack("barrel");
   test::subject("takeDamage");
