@@ -39,25 +39,13 @@ void test_member_basic() {
 }
 
 void test_member_cant() {
-  {
-    test::header("no hitpoints");
-    ScavTrap scav("scav");
-    scav.takeDamage(300);
-    test::subject("can't attack");
-    scav.attack("barrel");
-    test::subject("can't be repaired");
-    scav.beRepaired(10);
-  }
-  {
-    test::header("no energy");
-    ScavTrap scav("scav");
-    for (uint i = 0; i < 50; ++i)
-      scav.beRepaired(1);
-    test::subject("can't attack");
-    scav.attack("barrel");
-    test::subject("can't be repaired");
-    scav.beRepaired(10);
-  }
+  test::header("no hitpoints");
+  ScavTrap scav("scav");
+  scav.takeDamage(300);
+  test::subject("can't attack");
+  scav.attack("barrel");
+  test::subject("can't be repaired");
+  scav.beRepaired(10);
 }
 
 void test_guard_gate() {
@@ -65,10 +53,20 @@ void test_guard_gate() {
   ScavTrap scav("scav");
   scav.guardGate();
 }
- 
+
+void test_virtual() {
+  test::header("virtual destuctor");
+  ClapTrap* botPtr = new ScavTrap("scav");
+  test::subject("virtual attack");
+  botPtr->attack("barrel");
+  test::subject("virtual destructor");
+  delete botPtr;
+}
+
 int main(void) {
   test_orthodox();
   test_member_basic();
   test_member_cant();
   test_guard_gate();
+  test_virtual();
 }
