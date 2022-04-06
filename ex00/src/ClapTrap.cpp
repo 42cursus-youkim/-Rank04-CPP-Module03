@@ -8,12 +8,18 @@ using std::cout;
 
 // Constructors
 ClapTrap::ClapTrap()
-    : _name("(VOID)"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+    : _name("(VOID)"),
+      _hitPoints(HITPOINTS),
+      _energyPoints(ENERGY_POINTS),
+      _attackDamage(ATTACK_DAMAGE) {
   announce() << "is born!\n" END;
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-    : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+    : _name(name),
+      _hitPoints(HITPOINTS),
+      _energyPoints(ENERGY_POINTS),
+      _attackDamage(ATTACK_DAMAGE) {
   announce() << "is born!\n" END;
 }
 

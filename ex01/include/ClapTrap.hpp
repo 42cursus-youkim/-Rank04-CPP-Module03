@@ -33,6 +33,8 @@ class ClapTrap {
   unsigned int _energyPoints;
   unsigned int _attackDamage;
 
+  enum { HITPOINTS = 10, ENERGY_POINTS = 10, ATTACK_DAMAGE = 0 };
+
   // Util
   static std::string boldNum(int num);
   std::ostream& announce(const std::string& color = GRN);
