@@ -86,3 +86,8 @@ std::ostream& ClapTrap::announce(const std::string& color) {
   cout << color << "ClapTrap " << std::left << BOLD << _name << " " << color;
   return cout;
 }
+
+// Getters
+unsigned int ClapTrap::getHitPoints() const { return _hitPoints; }
+unsigned int ClapTrap::getEnergyPoints() const { return _energyPoints; }
+unsigned int ClapTrap::getAttackDamage() const { return _attackDamage; }
