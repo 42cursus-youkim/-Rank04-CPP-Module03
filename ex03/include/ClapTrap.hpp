@@ -29,9 +29,8 @@ class ClapTrap {
   unsigned int _attackDamage;
 
   // Util
-  std::string boldNum(int num);
-  std::string makeTag(const std::string& str);
-  std::ostream& announce(std::string color = GRN);
+  static std::string boldNum(int num);
+  std::ostream& announce(const std::string& color = GRN);
 };
 
 #endif

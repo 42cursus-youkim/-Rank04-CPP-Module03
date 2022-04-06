@@ -5,7 +5,6 @@
 #include "color.hpp"
 
 using std::cout;
-static std::string boldNum(int num);
 
 // Constructors
 ClapTrap::ClapTrap()
@@ -76,7 +75,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 }
 
 // Util
-static std::string boldNum(int num) {
+std::string ClapTrap::boldNum(int num) {
   std::stringstream ss;
 
   ss << BOLD << num << END;
