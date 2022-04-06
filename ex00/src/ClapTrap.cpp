@@ -27,15 +27,12 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
 }
 
 // Destructor
-ClapTrap::~ClapTrap() {
-  announce(RED) << "is dead!\n" END;
-}
+ClapTrap::~ClapTrap() { announce(RED) << "is dead!\n" END; }
 
 // Operators
 ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
   if (this != &assign) {
-    announce(YEL) << "is assigned to " << makeTag(assign._name) << YEL
-                  << "!\n" END;
+    announce(YEL) << "is assigned to " BOLD << assign._name << YEL << "!\n" END;
     _name = assign._name;
     _hitPoints = assign._hitPoints;
     _energyPoints = assign._energyPoints;
@@ -54,7 +51,7 @@ void ClapTrap::attack(std::string const& target) {
     return;
   } else {
     _energyPoints--;
-    announce(YEL) << "attack " << makeTag(target) << YEL ", causing " RED
+    announce(YEL) << "attack " BOLD << target << YEL ", causing " RED
                   << boldNum(_attackDamage) << YEL
                   << " points of damage!\n" END;
   }
@@ -84,15 +81,8 @@ static std::string boldNum(int num) {
   return ss.str();
 }
 
-std::string ClapTrap::makeTag(const std::string& str) {
-  std::stringstream ss;
-
-  ss << BOLD "<" << str << ">" END;
-  return ss.str();
-}
-
 std::ostream& ClapTrap::announce(const std::string& color) {
-  cout << color << "ClapTrap " << std::left << std::setw(16) << makeTag(_name)
+  cout << color << "ClapTrap " << std::left << BOLD << _name
        << " " << color;
   return cout;
 }
