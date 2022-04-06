@@ -23,6 +23,9 @@ class FragTrap : virtual public ClapTrap {
 
   // Util
   std::ostream& announce(const std::string& color = GRN);
+
+ protected:
+  enum { HITPOINTS = 100, ENERGY_POINTS = 100, ATTACK_DAMAGE = 30 };
 };
 
 #endif
