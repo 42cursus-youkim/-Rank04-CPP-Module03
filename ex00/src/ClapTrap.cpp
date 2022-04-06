@@ -2,23 +2,18 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <stdexcept>
 #include "color.hpp"
+
 using std::cout;
 
 namespace msg {
 const string clapTrapMsg[4] = {"ClapTrap", "is born!", "is dead!", "attacks"};
 }  // namespace msg
 
-// Constructors
-ClapTrap::ClapTrap()
-    : _name("(VOID)"),
-      _hitPoints(HITPOINTS),
-      _energyPoints(ENERGY_POINTS),
-      _attackDamage(ATTACK_DAMAGE) {
-  log(msg::CONSTRUCTOR);
-}
+// Disabled Constructor
+ClapTrap::ClapTrap() {}
 
+// Constructors
 ClapTrap::ClapTrap(const std::string& name)
     : _name(name),
       _hitPoints(HITPOINTS),
@@ -116,12 +111,12 @@ std::ostream& ClapTrap::logInternal(msg::type type) const {
 
 void ClapTrap::log(msg::type type) const { logInternal(type) << "\n"; }
 
-void ClapTrap::log(msg::type type, int num) const {
+void ClapTrap::log(msg::type type, uint num) const {
   logInternal(type) << " " << boldNum(num) << msg::colorsOnType[type]
                     << " points!\n";
 }
 
-void ClapTrap::log(msg::type type, const string& msg, int num) const {
+void ClapTrap::log(msg::type type, const string& msg, uint num) const {
   logInternal(type) << " " BOLD << msg::colorsOnType[type] << msg << " for "
                     << boldNum(num) << msg::colorsOnType[type] << " points!\n";
 }

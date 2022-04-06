@@ -2,42 +2,83 @@
 #define CLAPTRAP_HPP
 
 #include <string>
+#include "color.hpp"
+
+using std::string;
+typedef unsigned int uint;
+
+namespace msg {
+
+enum type {
+  /* specific msg */
+  CLASSNAME,
+  CONSTRUCTOR,
+  DESTRUCTOR,
+  ATTACK,
+  SPECIAL,
+  /* general msg */
+  LOW_HITPOINT,
+  LOW_ENERGY,
+  REPAIR,
+  TAKE_DAMAGE,
+};
+
+const string colorsOnType[] = {BLU, GRN, RED, YEL, CYN, MAG, MAG, YEL, RED};
+const string generalMsg[] = {"is out of hitpoints!", "is out of energy!",
+                             "is repaired by", "is damaged by"};
+}  // namespace msg
 
 class ClapTrap {
- public:
-  // Constructors
+ private:
+  string _name;
+  uint _hitPoints;
+  uint _energyPoints;
+  uint _attackDamage;
+
+  enum { HITPOINTS = 10, ENERGY_POINTS = 10, ATTACK_DAMAGE = 0 };
+
+  // Disabled Constructor
   ClapTrap();
+
+ public:
+  // Constructors & Destructor
   ClapTrap(const ClapTrap& copy);
-  ClapTrap(const std::string& name);
+  ClapTrap(const string& name);
 
   // Destructor
-  virtual ~ClapTrap();
+  ~ClapTrap();
 
   // Operators
   ClapTrap& operator=(const ClapTrap& assign);
 
-  // Functions
-  void attack(std::string const& target);
-  void takeDamage(unsigned int amount);
-  void beRepaired(unsigned int amount);
+  // Methods
+  void attack(const string& target);
+  void takeDamage(uint amount);
+  void beRepaired(uint amount);
+
+  // Getters/Setters
+ public:
+  const string& getName() const;
+  uint getHitPoints() const;
+  uint getEnergyPoints() const;
+  uint getAttackDamage() const;
 
  protected:
-  std::string _name;
-  unsigned int _hitPoints;
-  unsigned int _energyPoints;
-  unsigned int _attackDamage;
+  void setName(const string& name);
+  void setHitPoints(uint hitPoints);
+  void setEnergyPoints(uint energyPoints);
+  void setAttackDamage(uint attackDamage);
 
-  // Util
-  std::string boldNum(int num);
-  std::string makeTag(const std::string& str);
-  std::ostream& announce(std::string color);
+  // Logger
+ private:
+  virtual const string& getLog(msg::type type) const;
+  static string boldNum(int num);
+  std::ostream& logInternal(msg::type type) const;
+
+ protected:
+  virtual void log(msg::type type) const;
+  virtual void log(msg::type type, uint num) const;
+  virtual void log(msg::type type, const string& msg, uint num) const;
 };
-
-// Colors
-const std::string red = "\e[0;31m";
-const std::string green = "\e[0;32m";
-const std::string yellow = "\e[0;33m";
-const std::string end = "\e[0m";
-const std::string bold = "\e[1m";
 
 #endif
