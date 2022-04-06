@@ -2,6 +2,7 @@
 #define CLAPTRAP_HPP
 
 #include <string>
+#include "color.hpp"
 
 class ClapTrap {
  public:
@@ -30,14 +31,7 @@ class ClapTrap {
   // Util
   std::string boldNum(int num);
   std::string makeTag(const std::string& str);
-  std::ostream& announce(std::string color);
+  std::ostream& announce(std::string color = GRN);
 };
-
-// Colors
-const std::string red = "\e[0;31m";
-const std::string green = "\e[0;32m";
-const std::string yellow = "\e[0;33m";
-const std::string end = "\e[0m";
-const std::string bold = "\e[1m";
 
 #endif
