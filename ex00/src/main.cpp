@@ -7,8 +7,7 @@ using std::cout;
 void test_orthodox() {
   test::header("Construcor and Destructor");
   {
-    test::subject("empty name");
-    ClapTrap trap;
+    ClapTrap trap("trap");
     TEST_EXPECT(trap.getHitPoints() == 10 and trap.getEnergyPoints() == 10 and
                 trap.getAttackDamage() == 0);
   }
@@ -20,7 +19,7 @@ void test_orthodox() {
   {
     test::subject("assign");
     ClapTrap trap("trap");
-    ClapTrap assign;
+    ClapTrap assign("before assign");
     assign = trap;
   }
 }
@@ -49,7 +48,8 @@ void test_member_cant() {
   {
     test::header("no energy");
     ClapTrap trap("trap");
-    trap.setEnergyPoints(0);
+    for (uint i = 0; i < 10; ++i)
+      trap.beRepaired(-1);
     test::subject("can't attack");
     trap.attack("barrel");
     test::subject("can't be repaired");
