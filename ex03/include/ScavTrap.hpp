@@ -24,6 +24,9 @@ class ScavTrap : virtual public ClapTrap {
 
   // Util
   std::ostream& announce(const std::string& color = GRN);
+
+ protected:
+  enum { HITPOINTS = 100, ENERGY_POINTS = 50, ATTACK_DAMAGE = 20 };
 };
 
 #endif
