@@ -23,7 +23,7 @@ class ScavTrap : public ClapTrap {
   void guardGate();
 
   // Util
-  std::ostream& announce(std::string color);
+  std::ostream& announce(const std::string& color = GRN);
 };
 
 #endif

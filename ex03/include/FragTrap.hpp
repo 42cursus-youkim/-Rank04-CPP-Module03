@@ -23,7 +23,7 @@ class FragTrap : virtual public ClapTrap {
   void highFivesGuys();
 
   // Util
-  std::ostream& announce(std::string color);
+  std::ostream& announce(const std::string& color = GRN);
 };
 
 #endif

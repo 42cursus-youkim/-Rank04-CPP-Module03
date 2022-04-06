@@ -24,7 +24,7 @@ class DiamondTrap : public ScavTrap, public FragTrap {
   void whoAmI();
 
   // Util
-  std::ostream& announce(std::string color);
+  std::ostream& announce(const std::string& color = GRN);
 
  private:
   std::string _name;
