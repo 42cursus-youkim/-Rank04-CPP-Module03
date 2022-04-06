@@ -11,7 +11,7 @@ DiamondTrap::DiamondTrap()
   FragTrap::_hitPoints = 100;
   ScavTrap::_energyPoints = 50;
   FragTrap::_attackDamage = 30;
-  announce(green) << "is shiny!!!!\n" << end;
+  announce() << "is shiny!!!!\n" END;
 }
 
 DiamondTrap::DiamondTrap(const std::string& name)
@@ -20,16 +20,14 @@ DiamondTrap::DiamondTrap(const std::string& name)
   FragTrap::_hitPoints = 100;
   ScavTrap::_energyPoints = 50;
   FragTrap::_attackDamage = 30;
-  announce(green) << "is shiny!!!!\n" << end;
+  announce() << "is shiny!!!!\n" END;
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& copy)
     : ClapTrap(copy), ScavTrap(copy), FragTrap(copy) {}
 
 // Destructor
-DiamondTrap::~DiamondTrap() {
-  announce(red) << "is no longer shiny!!!!\n" << end;
-}
+DiamondTrap::~DiamondTrap() { announce(RED) << "is no longer shiny!!!!\n" END; }
 
 // Operators
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap& assign) {
@@ -43,13 +41,11 @@ void DiamondTrap::attack(std::string const& target) {
 }
 
 void DiamondTrap::whoAmI() {
-  announce(red) << "My private name: " << makeTag(_name) << yellow
-                << " and claptrap name: " << makeTag(ClapTrap::_name) << " !\n"
-                << end;
+  announce(RED) << "My private name: " BOLD << _name << YEL
+                << " and claptrap name: " << ClapTrap::_name << " !\n" END;
 }
 
-std::ostream& DiamondTrap::announce(std::string color) {
-  cout << color << "DiamondTrap " << std::left << std::setw(16)
-       << makeTag(_name) << " " << color;
+std::ostream& DiamondTrap::announce(const std::string& color) {
+  cout << color << "DiamondTrap " BOLD << std::left << _name << " " << color;
   return cout;
 }
