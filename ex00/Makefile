@@ -3,7 +3,6 @@ CXX := c++
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98 \
 						-I include/	 -I util/
 
-
 SRC := $(wildcard src/*.cpp)
 OBJ := $(SRC:%.cpp=%.o)
 
