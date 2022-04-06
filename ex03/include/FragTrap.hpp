@@ -5,7 +5,7 @@
 #include <string>
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap {
+class FragTrap : public ClapTrap {
  public:
   // Constructors
   FragTrap();
@@ -19,7 +19,6 @@ class FragTrap : virtual public ClapTrap {
   FragTrap& operator=(const FragTrap& assign);
 
   // Function
-  void attack(std::string const& target);
   void highFivesGuys();
 
   // Util

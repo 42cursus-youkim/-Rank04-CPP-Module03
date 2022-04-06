@@ -9,21 +9,19 @@ FragTrap::FragTrap() : ClapTrap("(VOID)") {
   _hitPoints = 100;
   _energyPoints = 100;
   _attackDamage = 30;
-  announce(green) << "is here!!!!\n" << end;
+  announce() << "is here!!!!\n" END;
 }
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name) {
   _hitPoints = 100;
   _energyPoints = 100;
   _attackDamage = 30;
-  announce(green) << "is here!!!!\n" << end;
+  announce() << "is here!!!!\n" END;
 }
 
 FragTrap::FragTrap(const FragTrap& copy) : ClapTrap(copy) {}
 
 // Destructor
-FragTrap::~FragTrap() {
-  announce(red) << "is reduced to fragments\n" << end;
-}
+FragTrap::~FragTrap() { announce(RED) << "is reduced to fragments!!\n" END; }
 
 // Operators
 FragTrap& FragTrap::operator=(const FragTrap& assign) {
@@ -31,19 +29,11 @@ FragTrap& FragTrap::operator=(const FragTrap& assign) {
   return *this;
 }
 
-void FragTrap::attack(std::string const& target) {
-  announce(yellow) << "attack " << makeTag(target) << yellow << ", causing "
-                   << red << boldNum(_attackDamage) << yellow
-                   << " points of damage!!!!!!\n"
-                   << end;
-}
-
 void FragTrap::highFivesGuys() {
-  announce(green) << "high fives guys!!!!!!\n" << end;
+  announce(GRN) << "high fives guys!!!!!!\n" END;
 }
 
-std::ostream& FragTrap::announce(std::string color) {
-  cout << color << "FragTrap " << std::left << std::setw(16) << makeTag(_name)
-       << " " << color;
+std::ostream& FragTrap::announce(const std::string& color) {
+  cout << color << "FragTrap " << std::left << BOLD << _name << " " << color;
   return cout;
 }
