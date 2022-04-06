@@ -63,13 +63,15 @@ void ClapTrap::takeDamage(unsigned int amount) {
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  if (_energyPoints > 0) {
+  if (_energyPoints == 0) {
+    announce(RED) << "is out of energy to repair!\n" END;
+  } else if (_hitPoints == 0) {
+    announce(RED) << "is out of hit points to repair!\n" END;
+  } else {
     _energyPoints--;
     _hitPoints += amount;
     announce() << "is repaired by " << boldNum(amount) << GRN
                << " points!\n" END;
-  } else {
-    announce(RED) << "is out of energy to repair!\n" END;
   }
 }
 
