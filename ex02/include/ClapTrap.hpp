@@ -46,13 +46,13 @@ class ClapTrap {
   ClapTrap(const string& name);
 
   // Destructor
-  ~ClapTrap();
+  virtual ~ClapTrap();
 
   // Operators
   ClapTrap& operator=(const ClapTrap& assign);
 
   // Methods
-  void attack(const string& target);
+  virtual void attack(const string& target);
   void takeDamage(uint amount);
   void beRepaired(uint amount);
 
@@ -76,9 +76,9 @@ class ClapTrap {
   std::ostream& logInternal(msg::type type) const;
 
  protected:
-  virtual void log(msg::type type) const;
-  virtual void log(msg::type type, uint num) const;
-  virtual void log(msg::type type, const string& msg, uint num) const;
+  void log(msg::type type) const;
+  void log(msg::type type, uint num) const;
+  void log(msg::type type, const string& msg, uint num) const;
 };
 
 #endif

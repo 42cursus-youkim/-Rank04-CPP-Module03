@@ -6,14 +6,19 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : public ClapTrap {
+ private:
+  enum { HITPOINTS = 100, ENERGY_POINTS = 50, ATTACK_DAMAGE = 20 };
+
+  // Disabled Constructor
+  ScavTrap();
+
  public:
   // Constructors
-  ScavTrap();
   ScavTrap(const std::string& name);
   ScavTrap(const ScavTrap& copy);
 
   // Destructor
-  ~ScavTrap();
+  virtual ~ScavTrap();
 
   // Operators
   ScavTrap& operator=(const ScavTrap& assign);

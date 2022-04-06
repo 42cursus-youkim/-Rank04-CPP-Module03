@@ -3,9 +3,7 @@
 
 using std::cout;
 
-static void testDefault() {
-  DiamondTrap dia("default");
-}
+static void testDefault() { DiamondTrap dia("default"); }
 
 static void testCopy() {
   DiamondTrap dia("base");
@@ -14,7 +12,7 @@ static void testCopy() {
 
 static void testAssign() {
   DiamondTrap dia("base");
-  DiamondTrap assignedDia;
+  DiamondTrap assignedDia("before assign");
 
   assignedDia = dia;
 }

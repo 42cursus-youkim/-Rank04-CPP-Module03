@@ -1,30 +1,35 @@
 #include "ScavTrap.hpp"
 #include <iomanip>
 #include <iostream>
-
+#include "color.hpp"
 using std::cout;
 
+namespace msg {
+const string scavTrapMsg[5] = {"ScavTrap", "is here to guard!",
+                               "is blasted and cannot guard!", "bonks",
+                               "entered gatekeeping mode!"};
+}  // namespace msg
+
+// Disabled Constructor
+ScavTrap::ScavTrap() {}
+
 // Constructors
-ScavTrap::ScavTrap() : ClapTrap("(VOID)") {
-  _hitPoints = 100;
-  _energyPoints = 50;
-  _attackDamage = 20;
-  announce(green) << "long for COMBAT!!!!!\n" << end;
-}
-
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name) {
-  _hitPoints = 100;
-  _energyPoints = 50;
-  _attackDamage = 20;
-  announce(green) << "long for COMBAT!!!!!\n" << end;
+  setHitPoints(HITPOINTS);
+  setEnergyPoints(ENERGY_POINTS);
+  setAttackDamage(ATTACK_DAMAGE);
+  log(msg::CONSTRUCTOR);
 }
 
-ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy) {}
+ScavTrap::ScavTrap(const ScavTrap& copy) : ClapTrap(copy) {
+  setHitPoints(copy.getHitPoints());
+  setEnergyPoints(copy.getEnergyPoints());
+  setAttackDamage(copy.getAttackDamage());
+  log(msg::CONSTRUCTOR);
+}
 
 // Destructor
-ScavTrap::~ScavTrap() {
-  announce(red) << "is BLASTED into oblivion!!!!!\n" << end;
-}
+ScavTrap::~ScavTrap() { log(msg::DESTRUCTOR); }
 
 // Operators
 ScavTrap& ScavTrap::operator=(const ScavTrap& assign) {
