@@ -24,7 +24,7 @@ namespace test {
 
 template <typename T>
 void header(T const& t) {
-  cout << BHYEL << string(80, '-') << "\n";
+  cout << BHYEL << string(40, '-') << "\n";
   cout << "[[[ Testing " BBLU << t << BHYEL " ]]]\n" END;
 }
 

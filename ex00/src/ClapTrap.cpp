@@ -2,14 +2,12 @@
 #include <iomanip>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
 #include "color.hpp"
-
 using std::cout;
 
 namespace msg {
-
 const string clapTrapMsg[4] = {"ClapTrap", "is born!", "is dead!", "attacks"};
-
 }  // namespace msg
 
 // Constructors
@@ -18,7 +16,7 @@ ClapTrap::ClapTrap()
       _hitPoints(HITPOINTS),
       _energyPoints(ENERGY_POINTS),
       _attackDamage(ATTACK_DAMAGE) {
-  logln(msg::CONSTRUCTOR);
+  log(msg::CONSTRUCTOR);
 }
 
 ClapTrap::ClapTrap(const std::string& name)
@@ -26,7 +24,7 @@ ClapTrap::ClapTrap(const std::string& name)
       _hitPoints(HITPOINTS),
       _energyPoints(ENERGY_POINTS),
       _attackDamage(ATTACK_DAMAGE) {
-  logln(msg::CONSTRUCTOR);
+  log(msg::CONSTRUCTOR);
 }
 
 ClapTrap::ClapTrap(const ClapTrap& copy)
@@ -34,11 +32,11 @@ ClapTrap::ClapTrap(const ClapTrap& copy)
       _hitPoints(copy._hitPoints),
       _energyPoints(copy._energyPoints),
       _attackDamage(copy._attackDamage) {
-  logln(msg::CONSTRUCTOR);
+  log(msg::CONSTRUCTOR);
 }
 
 // Destructor
-ClapTrap::~ClapTrap() { logln(msg::DESTRUCTOR); }
+ClapTrap::~ClapTrap() { log(msg::DESTRUCTOR); }
 
 // Operators
 ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
@@ -52,57 +50,30 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& assign) {
   return *this;
 }
 
-// Util
-string ClapTrap::boldNum(int num) {
-  std::stringstream ss;
-
-  ss << BOLD << num << END;
-  return ss.str();
-}
-
-const string& ClapTrap::getLog(msg::type type) const {
-  return msg::clapTrapMsg[type];
-}
-
-std::ostream& ClapTrap::log(msg::type type) const {
-  cout << msg::colorsOnType[type] << getLog(msg::CLASSNAME) << " " << getName()
-       << " ";
-  if (type > msg::SPECIAL)
-    cout << msg::generalMsg[type - msg::SPECIAL - 1] << " ";
-  else
-    cout << getLog(type) << " ";
-  return cout;
-}
-
-void ClapTrap::logln(msg::type type) const { log(type) << "\n"; }
-
 // Methods
-void ClapTrap::attack(std::string const& target) {
-  if (_energyPoints == 0)
-    return logln(msg::ENERGY);
-  else if (_hitPoints == 0)
-    return logln(msg::HITPOINT);
+void ClapTrap::attack(const string& target) {
+  if (_energyPoints <= 0)
+    log(msg::LOW_ENERGY);
+  else if (_hitPoints <= 0)
+    log(msg::LOW_HITPOINT);
   else {
     _energyPoints--;
-    log(msg::ATTACK) << target << "for " << boldNum(_attackDamage)
-                     << YEL " points!\n" END;
+    log(msg::ATTACK, target, _attackDamage);
   }
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
   _hitPoints = _hitPoints > amount ? _hitPoints - amount : 0;
-  cout << RED << getLog(msg::CLASSNAME) << " take " << boldNum(amount)
-       << RED " points of damage!\n" END;
+  log(msg::TAKE_DAMAGE, amount);
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-  if (_energyPoints > 0) {
+  if (_energyPoints <= 0)
+    log(msg::LOW_ENERGY);
+  else {
     _energyPoints--;
     _hitPoints += amount;
-    // announce() << "is repaired by " << boldNum(amount) << GRN
-    //            << " points!\n" END;
-  } else {
-    // announce(RED) << "is out of energy to repair!\n" END;
+    log(msg::REPAIR, amount);
   }
 }
 
@@ -119,4 +90,38 @@ void ClapTrap::setEnergyPoints(uint energyPoints) {
 }
 void ClapTrap::setAttackDamage(uint attackDamage) {
   _attackDamage = attackDamage;
+}
+
+// Logger
+string ClapTrap::boldNum(int num) {
+  std::stringstream ss;
+
+  ss << BOLD << num << END;
+  return ss.str();
+}
+
+const string& ClapTrap::getLog(msg::type type) const {
+  return msg::clapTrapMsg[type];  // Different per class
+}
+
+std::ostream& ClapTrap::logInternal(msg::type type) const {
+  cout << msg::colorsOnType[type] << getLog(msg::CLASSNAME) << " " BOLD
+       << getName() << msg::colorsOnType[type] << " ";
+  if (type >= msg::LOW_HITPOINT)
+    cout << msg::generalMsg[type - msg::LOW_HITPOINT];
+  else
+    cout << getLog(type);
+  return cout;
+}
+
+void ClapTrap::log(msg::type type) const { logInternal(type) << "\n"; }
+
+void ClapTrap::log(msg::type type, int num) const {
+  logInternal(type) << " " << boldNum(num) << msg::colorsOnType[type]
+                    << " points!\n";
+}
+
+void ClapTrap::log(msg::type type, const string& msg, int num) const {
+  logInternal(type) << " " BOLD << msg::colorsOnType[type] << msg << " for "
+                    << boldNum(num) << msg::colorsOnType[type] << " points!\n";
 }

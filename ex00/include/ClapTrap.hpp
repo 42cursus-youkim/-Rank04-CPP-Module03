@@ -10,19 +10,22 @@ typedef unsigned int uint;
 namespace msg {
 
 enum type {
+  /* specific msg */
   CLASSNAME,
   CONSTRUCTOR,
   DESTRUCTOR,
   ATTACK,
   SPECIAL,
-  HITPOINT,
-  ENERGY,
+  /* general msg */
+  LOW_HITPOINT,
+  LOW_ENERGY,
   REPAIR,
+  TAKE_DAMAGE,
 };
 
-const string colorsOnType[] = {BLU, GRN, RED, YEL, CYN, MAG, MAG, YEL};
+const string colorsOnType[] = {BLU, GRN, RED, YEL, CYN, MAG, MAG, YEL, RED};
 const string generalMsg[] = {"is out of hitpoints!", "is out of energy!",
-                             "is repaired!"};
+                             "is repaired by", "is damaged by"};
 
 // const static string scavTrapMsg[4] = {"ScavTrap", "is scavvy!",
 //                                       "is disintegrated!", "bonks"};
@@ -41,13 +44,6 @@ class ClapTrap {
 
   enum { HITPOINTS = 10, ENERGY_POINTS = 10, ATTACK_DAMAGE = 0 };
 
- protected:
-  // Util
-  static string boldNum(int num);
-  virtual const string& getLog(msg::type type) const;
-  std::ostream& log(msg::type type) const;
-  void logln(msg::type type) const;
-
  public:
   // Constructors & Destructor
   ClapTrap();
@@ -61,11 +57,12 @@ class ClapTrap {
   ClapTrap& operator=(const ClapTrap& assign);
 
   // Methods
-  void attack(string const& target);
+  void attack(const string& target);
   void takeDamage(uint amount);
   void beRepaired(uint amount);
 
   // Getters/Setters
+ public:
   const string& getName() const;
   uint getHitPoints() const;
   uint getEnergyPoints() const;
@@ -75,6 +72,18 @@ class ClapTrap {
   void setHitPoints(uint hitPoints);
   void setEnergyPoints(uint energyPoints);
   void setAttackDamage(uint attackDamage);
+
+  // Logger
+ private:
+  virtual const string& getLog(msg::type type) const;
+  static string boldNum(int num);
+  std::ostream& logInternal(msg::type type) const;
+  std::ostream& log_internal(msg::type type, int amount) const;
+
+ protected:
+  virtual void log(msg::type type) const;
+  virtual void log(msg::type type, int num) const;
+  virtual void log(msg::type type, const string& msg, int num) const;
 };
 
 #endif
