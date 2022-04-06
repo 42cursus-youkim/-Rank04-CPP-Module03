@@ -54,7 +54,7 @@ void test_member_cant() {
 }
 
 void test_special() {
-  test::header("both special");
+  test::header("specials");
   DiamondTrap dia("dia");
   test::subject("high five guys!");
   dia.highFivesGuys();
