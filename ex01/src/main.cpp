@@ -65,7 +65,7 @@ void test_guard_gate() {
   ScavTrap scav("scav");
   scav.guardGate();
 }
-
+ 
 int main(void) {
   test_orthodox();
   test_member_basic();
