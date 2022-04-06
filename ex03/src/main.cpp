@@ -9,8 +9,9 @@ void test_orthodox() {
   {
     test::subject("unnamed");
     DiamondTrap empty;
-    TEST_EXPECT(empty.getAttackDamage() == 0 and empty.getHitPoints() == 100 and
-                empty.getEnergyPoints() == 50);
+    TEST_EXPECT(empty.getHitPoints() == 100 and
+                empty.getEnergyPoints() == 50 and
+                empty.getAttackDamage() == 30);
   }
   {
     test::subject("named");

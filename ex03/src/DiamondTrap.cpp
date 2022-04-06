@@ -8,18 +8,18 @@ using std::cout;
 DiamondTrap::DiamondTrap()
     : ClapTrap("(VOID)_clap_name"), ScavTrap(), FragTrap() {
   _name = "(VOID)";
-  FragTrap::_hitPoints = 100;
-  ScavTrap::_energyPoints = 50;
-  FragTrap::_attackDamage = 30;
+  _hitPoints = FragTrap::HITPOINTS;
+  _energyPoints = ScavTrap::ENERGY_POINTS;
+  _attackDamage = FragTrap::ATTACK_DAMAGE;
   announce() << "is shiny!!!!\n" END;
 }
 
 DiamondTrap::DiamondTrap(const std::string& name)
     : ClapTrap(name + "_clap_name"), ScavTrap(), FragTrap() {
   _name = name;
-  FragTrap::_hitPoints = 100;
-  ScavTrap::_energyPoints = 50;
-  FragTrap::_attackDamage = 30;
+  _hitPoints = FragTrap::HITPOINTS;
+  _energyPoints = ScavTrap::ENERGY_POINTS;
+  _attackDamage = FragTrap::ATTACK_DAMAGE;
   announce() << "is shiny!!!!\n" END;
 }
 
