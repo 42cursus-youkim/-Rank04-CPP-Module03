@@ -1,7 +1,7 @@
 # 🇨➕➕ CPP Module 03
 ## finally, b--
 
-![](https://badge42.herokuapp.com/api/project/youkim/CPP%20Module%2003)
+[![youkim's 42 CPP Module 03 Score](https://badge42.vercel.app/api/v2/cl1pqrsvk005409ml9e9fk7av/project/2548068)](https://github.com/JaeSeoKim/badge42)
 
 > This first module of C++ is designed to help you understand the specifities of the language when compared to C. Time to dive into Object Oriented Programming!
 #### 📄 [subject pdf](https://cdn.intra.42.fr/pdf/pdf/49420/en.subject.pdf)
